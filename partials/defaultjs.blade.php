@@ -1,1 +1,1 @@
-<script data-main="{{  generate_theme_js('mytema/assets/js/app-main.js?v=001' ) }}" src="http://requirejs.org/docs/release/2.1.20/minified/require.js"></script>
+<script data-main="{{url(dirTemaToko().'fashionis/assets/js/app-main')}}" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.22/require.min.js"></script>

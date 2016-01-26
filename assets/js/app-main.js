@@ -1,59 +1,65 @@
-var dirTema = document.getElementsByTagName('link')[1].getAttribute('href');
+var dirTema = document.querySelector("meta[name='theme_path']").getAttribute('content');
 
 require.config({
 	baseUrl: '/',
+    urlArgs: "v=001",
+	waitSeconds: 60,
 	shim: {
-		
+		'cart' : {
+			deps : ['jquery','noty']
+		},
+		'jq_ui' : {
+			deps : ['jquery']
+		},
+		"noty" : {
+			deps : ['jquery']
+		},
+		"bxslider" : {
+			deps : ['jquery']
+		},
+		"elevatezoom" : {
+			deps : ['jquery']
+		},
+		"navgoco" : {
+			deps : ['jquery']
+		},
+		"wow" : {
+			exports : 'WOW'
+		},
 	},
-    "waitSeconds" : 60,
-    urlArgs: "v=002",
 
 	paths: {
-		// MAIN LIBRARY
+		// LIBRARY
+		jquery 			: '//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min',
 		cart			: 'js/shop_cart',
 		jq_ui			: 'js/jquery-ui',
 		noty			: 'js/jquery.noty',
-		noty_util		: 'js/utils/noty',
-		router          : 'js/router',
+		isotope			: dirTema+'/assets/js/lib/isotope.pkgd.min',
+		bxslider		: dirTema+'/assets/js/lib/jquery.bxslider.min',
+		elevatezoom		: dirTema+'/assets/js/lib/jquery.elevatezoom',
+		navgoco			: dirTema+'/assets/js/lib/jquery.navgoco.min',
+		wow				: dirTema+'/assets/js/lib/wow.min',
 		
+		// ROUTE
+		router          : 'js/router',
 
-		//SHOP CONTROLLER
-		home            : dirTema+'assets/js/pages/home',
-		member          : dirTema+'assets/js/pages/member',
-		main            : dirTema+'assets/js/pages/default',
-		produk          : dirTema+'assets/js/pages/produk',
-		category        : dirTema+'assets/js/pages/category',
-		search        	: dirTema+'assets/js/pages/search',
+		// CONTROLLER
+		home            : dirTema+'/assets/js/controllers/home',
+		produk          : dirTema+'/assets/js/controllers/produk',
+		main	        : dirTema+'/assets/js/controllers/default',
 	}
 });
 require([
+	'jquery',
 	'router',
-	'noty_util'
-], function(router,b,main,noty)
+	'cart',
+	'main'
+], function($,router,cart,main)
 {
-	main.run();
-	noty.run();
-	
-	// HOME
-	router.define('/','home@run');
+	router.define('/', 'home@run');
 	router.define('home', 'home@run');
-
-	// MEMBER
-	router.define('member/*', 'member@run');
-
-	// PRODUK
-	// router.define('produk', 'cart@run');
 	router.define('produk/*', 'produk@run');
-
-	// CATEGORY
-	router.define('category/*', 'category@run');
-
-	// KOLEKSI
-	router.define('koleksi/*', 'category@run');
-
-	// SEARCH
-	router.define('search/*', 'search@run');
-
-
 	router.run();
+	cart.run();
+	main.run();
 });

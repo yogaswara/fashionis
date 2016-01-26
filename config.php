@@ -11,7 +11,7 @@ return array(
     | this is cool feature to set up a title, meta, default styles and scripts.
     |
     | [Notice] these event can be override by package config.
-    | asdas asdasd
+    |
     */
 
     'events' => array(
@@ -48,18 +48,18 @@ return array(
         }
 
     ),
-
     'num_display' => array(
-        'home_product'=>9,
-        'main_product'=>8,
+        'home_product'=>6,
+        'main_product'=>18,
         'related_product'=>4,
         'latest_product'=>5,
         'bestseller'=>5,
         'featured'=>5,
         'blog'=>5,
-        'testimonial'=>4,    
+        'testimonial'=>8,    
     ),
     'banner' => true,
-    'themesColor' => array(),
-    'layout' => array(),
+    'themesColor' => false,
+    'layout' => false,
+
 );
